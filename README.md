@@ -56,6 +56,15 @@ Pull Requests will not be accepted for the time-being.
 
 [![Star History Chart](https://api.star-history.com/svg?repos=FujiwaraChoki/MoneyPrinter&type=Date)](https://star-history.com/#FujiwaraChoki/MoneyPrinter&Date)
 
+## Testing 🧪
+
+Install development requirements and run `pytest`:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## License 📝
 
 See [`LICENSE`](LICENSE) file for more information.
