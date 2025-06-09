@@ -229,8 +229,15 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
         stroke_width=5,
     )
 
-    # Split the subtitles position into horizontal and vertical
-    horizontal_subtitles_position, vertical_subtitles_position = subtitles_position.split(",")
+    # Provide a default position if none is supplied
+    if not subtitles_position:
+        subtitles_position = "center,bottom"
+
+    # Split the subtitles position into horizontal and vertical safely
+    if "," in subtitles_position:
+        horizontal_subtitles_position, vertical_subtitles_position = subtitles_position.split(",", 1)
+    else:
+        horizontal_subtitles_position, vertical_subtitles_position = "center", "bottom"
 
     # Burn the subtitles into the video
     subtitles = SubtitlesClip(subtitles_path, generator)
