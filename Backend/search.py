@@ -24,7 +24,12 @@ def search_for_stock_videos(query: str, api_key: str, it: int, min_dur: int) -> 
     qurl = f"https://api.pexels.com/videos/search?query={query}&per_page={it}"
 
     # Send the request
-    r = requests.get(qurl, headers=headers)
+    try:
+        r = requests.get(qurl, headers=headers)
+        r.raise_for_status()
+    except requests.RequestException as e:
+        print(colored(f"[-] Failed to fetch videos: {e}", "red"))
+        return []
 
     # Parse the response
     response = r.json()
